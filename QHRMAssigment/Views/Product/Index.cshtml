@@ -1,0 +1,67 @@
+﻿@model IEnumerable<QHRMAssigment.Models.AddNewProd>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+
+
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Product List</h1>
+<div class="d-flex justify-content-end mb-5">
+    <a asp-action="AddorUpdate" class="btn btn-secondary">Add Product</a>
+</div>
+<table class="table table-bordered">
+    <thead >
+        <tr>
+             
+            <th>
+                @Html.DisplayNameFor(model => model.Product)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Created)
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+             
+            <td>
+                @Html.DisplayFor(modelItem => item.Product)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td class="w-25">
+                @Html.DisplayFor(modelItem => item.Created)
+            </td>
+            <td>
+                    <a asp-controller="Product" asp-action="Details" asp-route-id="@item.SN">
+                        <input type="button" value="Details" class="btn btn-info" />
+                    </a>
+                    <a asp-controller="Product" asp-action="AddorUpdate" asp-route-id="@item.SN">
+                        <input type="button" value="Update" class="btn btn-success" />
+             </a>
+    <a asp-action="Delete" asp-route-id="@item.SN">
+                        <input type="button" value="Delete" class="btn btn-danger" />
+    </a>
+</td>
+
+        </tr>
+}
+    </tbody>
+</table>
